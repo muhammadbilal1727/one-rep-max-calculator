@@ -4,14 +4,11 @@ A free one rep max (1RM) calculator website: 7 formulas, a training percentage c
 
 **Live site:** https://muhammadbilal1727.github.io/one-rep-max-calculator/
 
-## Placeholders to replace later
+## When you buy a domain
 
-### 1. Your domain: `https://www.example.com`
+The site's official address is currently `https://muhammadbilal1727.github.io/one-rep-max-calculator`. It's used in **24 places across 7 files**. Replace it with your new domain, for example `https://www.myliftcalc.com`, with no `/` at the end.
 
-Used in **24 places across 7 files**. Replace it with your real domain, for example `https://www.myliftcalc.com`.
-
-**Easiest way:** open this folder in VS Code → press **Ctrl + Shift + H** → top box: `www.example.com` → second box: `www.myliftcalc.com` → **Replace All**.
-Search for `www.example.com` (with `www.`) so you don't change the email placeholder below by mistake.
+**Easiest way:** open this folder in VS Code → press **Ctrl + Shift + H** → top box: `https://muhammadbilal1727.github.io/one-rep-max-calculator` → second box: `https://www.myliftcalc.com` → **Replace All**.
 
 | File | Line | What it is |
 |---|---|---|
@@ -40,11 +37,13 @@ Search for `www.example.com` (with `www.`) so you don't change the email placeho
 | sitemap.xml | 16 | Privacy Policy page |
 | sitemap.xml | 20 | Terms page |
 
-### 2. Your email: `YOUR-EMAIL@example.com`
+You also need to connect the domain to GitHub Pages (repository **Settings → Pages → Custom domain**) and add GitHub's DNS records at your domain provider.
 
-Shown on the Contact, Privacy Policy and Terms pages. Replace it the same way (search for `YOUR-EMAIL@example.com`).
+## Contact email
 
-### 3. Google Analytics ID (optional)
+The Contact, Privacy Policy and Terms pages show `bilal8011727@gmail.com`. To change it, search for that address and replace it.
+
+## Google Analytics (optional)
 
 In **site.js**, put your Measurement ID (looks like `G-ABC123XYZ`) between the quotes on this line:
 
