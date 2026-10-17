@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Rep Max Calculator – Free 1RM Calculator &amp; Chart</title>
+  <meta name="description" content="Free one rep max calculator. Enter weight and reps to estimate your 1RM with 7 formulas, check your strength level and get a training chart.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <!-- REPLACE: change YOURDOMAIN.com to your real domain in every line below that contains it -->
+  <link rel="canonical" href="https://www.YOURDOMAIN.com/">
+
+  <!-- Social sharing (Facebook, WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="1RM Calculator">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://www.YOURDOMAIN.com/">
+  <meta property="og:title" content="One Rep Max Calculator – Estimate Your 1RM">
+  <meta property="og:description" content="Estimate your one rep max from any set of 1–12 reps, see your strength level, and plan your training with a percentage chart.">
+  <meta property="og:image" content="https://www.YOURDOMAIN.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="One Rep Max Calculator – 7 proven formulas, strength levels and training chart">
+
+  <!-- X / Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="One Rep Max Calculator – Estimate Your 1RM">
+  <meta name="twitter:description" content="Estimate your one rep max from any set of 1–12 reps, see your strength level, and plan your training with a percentage chart.">
+  <meta name="twitter:image" content="https://www.YOURDOMAIN.com/og-image.png">
+  <meta name="twitter:image:alt" content="One Rep Max Calculator – 7 proven formulas, strength levels and training chart">
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0d11" media="(prefers-color-scheme: dark)">
+
+  <!-- Fonts load in the background so they never delay the page -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply the saved theme before the page draws, so it never flashes the wrong colors.
+    try {
+      var saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "One Rep Max Calculator",
+        "url": "https://www.YOURDOMAIN.com/",
+        "description": "Free one rep max calculator that estimates your 1RM from the weight and reps you lifted using 7 formulas, with strength levels and a training percentage chart.",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "en",
+        "image": "https://www.YOURDOMAIN.com/og-image.png",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "1RM estimate from 1–12 reps",
+          "Epley, Brzycki, Lombardi, Lander, O'Conner, Mayhew and Wathan formulas",
+          "Strength level for bench press, squat, deadlift and overhead press",
+          "Training percentage chart from 50% to 100%",
+          "kg and lbs"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What does 1RM mean?", "acceptedAnswer": { "@type": "Answer", "text": "1RM stands for \"one repetition maximum\". It's the heaviest weight you can lift once with proper form for a given exercise." } },
+          { "@type": "Question", "name": "How many reps should I use for the most accurate estimate?", "acceptedAnswer": { "@type": "Answer", "text": "Sets of 2 to 6 reps give the most reliable results. You can enter up to 12 reps, but accuracy drops as the reps go up." } },
+          { "@type": "Question", "name": "Which 1RM formula is the most accurate?", "acceptedAnswer": { "@type": "Answer", "text": "No single formula is best for everyone. Epley and Brzycki are the most widely used, and both are accurate for low reps. Averaging several formulas, as this calculator does, usually gives the most balanced result." } },
+          { "@type": "Question", "name": "Is it safe to test my one rep max?", "acceptedAnswer": { "@type": "Answer", "text": "It can be, if you have some training experience, warm up properly and use a spotter or safety bars. Beginners and anyone with injuries should use an estimate instead of testing a true max." } },
+          { "@type": "Question", "name": "How often should I test or recalculate my 1RM?", "acceptedAnswer": { "@type": "Answer", "text": "Every 4 to 8 weeks is plenty for most people. You can recalculate your estimate at any time using a recent hard set, without the stress of a max attempt." } },
+          { "@type": "Question", "name": "Does this calculator work for any exercise?", "acceptedAnswer": { "@type": "Answer", "text": "It works best for big barbell lifts like the squat, bench press, deadlift and overhead press. You can use it for other exercises too, but the results will be less precise." } },
+          { "@type": "Question", "name": "What is a good one rep max for my bodyweight?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the lift, your gender and your experience. Enter your bodyweight in the strength level section above to see whether your lift is at a beginner, novice, intermediate, advanced or elite level." } },
+          { "@type": "Question", "name": "Should I use kg or lbs?", "acceptedAnswer": { "@type": "Answer", "text": "Use whichever unit your gym's plates are marked in. The formulas work the same way in both, and the calculator remembers your choice." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="1RM Calculator home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>
+          </svg>
+        </span>
+        <span class="logo-text">1RM <span>Calculator</span></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main menu">
+        <a href="index.html" aria-current="page">Calculator</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
+          <svg class="icon-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <svg class="icon-moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+        </button>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <svg class="icon-menu" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+          <svg class="icon-close" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">Strength training tool</span>
+      <h1>One Rep Max <span class="highlight">Calculator</span></h1>
+      <p class="subtitle">Enter a set you've lifted. We'll estimate the heaviest single rep you can do using 7 proven formulas, free and instantly.</p>
+    </section>
+
+    <div class="top-grid">
+      <section class="card inputs" aria-label="Your lift">
+        <div class="field">
+          <label for="lift">Lift type</label>
+          <div class="select-wrap">
+            <select id="lift">
+              <option value="bench">Bench Press</option>
+              <option value="squat">Squat</option>
+              <option value="deadlift">Deadlift</option>
+              <option value="ohp">Overhead Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="weight">Weight lifted</label>
+          <div class="input-wrap">
+            <input id="weight" type="text" inputmode="decimal" placeholder="100" autocomplete="off">
+            <span class="input-suffix" id="weight-suffix">kg</span>
+          </div>
+          <p class="error" id="weight-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="reps">Reps performed <span class="hint">1–12</span></label>
+          <div class="input-wrap">
+            <input id="reps" type="text" inputmode="numeric" placeholder="5" autocomplete="off">
+            <span class="input-suffix">reps</span>
+          </div>
+          <p class="error" id="reps-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <span class="label">Unit</span>
+          <div class="toggle" id="unit-toggle" role="radiogroup" aria-label="Unit">
+            <span class="toggle-slider" aria-hidden="true"></span>
+            <button type="button" class="toggle-btn active" data-unit="kg" role="radio" aria-checked="true">kg</button>
+            <button type="button" class="toggle-btn" data-unit="lbs" role="radio" aria-checked="false">lbs</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card result" id="result">
+        <p class="result-label">Estimated 1RM</p>
+        <p class="result-value"><span id="avg">--</span><span class="unit" id="avg-unit">kg</span></p>
+        <p class="result-note" id="result-note" aria-live="polite">Enter your weight and reps to get started.</p>
+        <div class="result-range" id="result-range" hidden>
+          <div><span class="range-label">Lowest</span><span class="range-value" id="range-min">--</span></div>
+          <div><span class="range-label">Highest</span><span class="range-value" id="range-max">--</span></div>
+        </div>
+        <div class="result-actions">
+          <button type="button" class="btn btn-primary" id="copy-btn" disabled>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+            </svg>
+            <span id="copy-label">Copy result</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="reset-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
+            </svg>
+            Reset
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" aria-label="Strength level">
+      <div class="card-head">
+        <h2>Strength level</h2>
+        <p class="card-sub">Add your bodyweight to see how your lift compares with other lifters.</p>
+      </div>
+
+      <div class="strength-inputs">
+        <div class="field">
+          <label for="bodyweight">Your bodyweight</label>
+          <div class="input-wrap">
+            <input id="bodyweight" type="text" inputmode="decimal" placeholder="75" autocomplete="off">
+            <span class="input-suffix" id="bodyweight-suffix">kg</span>
+          </div>
+          <p class="error" id="bodyweight-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <span class="label">Gender</span>
+          <div class="toggle" id="gender-toggle" role="radiogroup" aria-label="Gender">
+            <span class="toggle-slider" aria-hidden="true"></span>
+            <button type="button" class="toggle-btn active" data-gender="male" role="radio" aria-checked="true">Male</button>
+            <button type="button" class="toggle-btn" data-gender="female" role="radio" aria-checked="false">Female</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="strength-output" aria-live="polite">
+        <p class="strength-message" id="strength-message">Enter your lift above and your bodyweight here to see your level.</p>
+        <div id="strength-result" hidden>
+          <div class="level-row">
+            <span class="level-badge" id="level-badge">--</span>
+            <span class="level-ratio" id="level-ratio">--</span>
+          </div>
+          <div class="level-bar">
+            <div class="level-segments">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="level-marker" id="level-marker"></span>
+          </div>
+          <div class="level-labels" id="level-labels">
+            <span data-short="Beg."><span class="label-full">Beginner</span></span>
+            <span data-short="Novice"><span class="label-full">Novice</span></span>
+            <span data-short="Inter."><span class="label-full">Intermediate</span></span>
+            <span data-short="Adv."><span class="label-full">Advanced</span></span>
+            <span data-short="Elite"><span class="label-full">Elite</span></span>
+          </div>
+          <p class="level-next" id="level-next"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>By formula</h2>
+        <p class="card-sub">Each formula estimates slightly differently. Your result above is the average.</p>
+      </div>
+      <div class="formula-grid" id="formulas"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Training percentages</h2>
+        <p class="card-sub">Use these weights to plan your sets.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>% of 1RM</th><th>Weight</th><th class="num">Approx. reps</th></tr>
+          </thead>
+          <tbody id="percent-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <article class="card content" id="guide">
+      <nav class="toc" aria-label="On this page">
+        <p class="toc-title">On this page</p>
+        <ol>
+          <li><a href="#what-is-1rm">What is a one rep max?</a></li>
+          <li><a href="#how-to-use">How to use this calculator</a></li>
+          <li><a href="#formulas">The formulas explained</a></li>
+          <li><a href="#accuracy">How accurate is it?</a></li>
+          <li><a href="#testing">Testing your 1RM safely</a></li>
+          <li><a href="#percentages">Training with percentages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <section id="what-is-1rm">
+        <h2>What is a one rep max?</h2>
+        <p>Your one rep max (often written as <strong>1RM</strong>) is the heaviest weight you can lift for a single, complete repetition with good form. If you can squat 140 kg once, but not 145 kg, your squat 1RM is 140 kg.</p>
+        <p>Lifters, coaches and physiotherapists use the 1RM as a simple way to measure strength. It answers two useful questions:</p>
+        <ul>
+          <li><strong>How strong am I right now?</strong> Your 1RM is a clear number you can track over months and years.</li>
+          <li><strong>How heavy should my training be?</strong> Most strength programs are written as percentages of your 1RM, such as "5 sets of 5 at 80%". Without knowing your max, those numbers mean nothing.</li>
+        </ul>
+        <p>The catch is that lifting your true maximum is tiring, takes time to warm up for, and carries more risk than normal training, especially if you're new to lifting. That's why most people estimate their 1RM from a lighter set instead. That's exactly what this calculator does.</p>
+      </section>
+
+      <section id="how-to-use">
+        <h2>How to use this one rep max calculator</h2>
+        <p>You only need one recent, honest set. Here's how to get a good estimate:</p>
+        <ol class="steps">
+          <li><strong>Choose your lift.</strong> Pick Bench Press, Squat, Deadlift, Overhead Press, or Other from the dropdown.</li>
+          <li><strong>Enter the weight you lifted.</strong> Use the total weight, including the bar. A standard Olympic barbell weighs 20 kg (about 45 lbs).</li>
+          <li><strong>Enter how many reps you did.</strong> Any number from 1 to 12 works, but sets of 2–6 reps give the most accurate results.</li>
+          <li><strong>Pick kg or lbs.</strong> The calculator remembers your choice for next time.</li>
+          <li><strong>Read your result.</strong> The big number is your estimated 1RM, the average of seven formulas. You'll also see each formula's result, plus the lowest and highest estimate.</li>
+          <li><strong>Check your strength level (optional).</strong> Add your bodyweight and gender to see whether your lift is at a Beginner, Novice, Intermediate, Advanced or Elite level.</li>
+          <li><strong>Plan your training.</strong> Use the percentage table to find the right weight for your next workout.</li>
+        </ol>
+        <p class="tip"><strong>Tip:</strong> Use a set you took close to failure, where you couldn't have done more than one extra rep. If you stopped at 5 reps but could easily have done 10, the calculator will underestimate your strength.</p>
+      </section>
+
+      <section id="formulas">
+        <h2>The 1RM formulas explained simply</h2>
+        <p>Over the years, sports scientists and strength coaches have tested lifters, compared their reps to their real maximums, and turned the results into formulas. Each one looks a little different, but they all do the same job: they take your weight and reps and predict your single best lift.</p>
+        <p>In the formulas below, <em>w</em> is the weight you lifted and <em>r</em> is the number of reps.</p>
+
+        <h3>Epley</h3>
+        <p class="formula-box">1RM = w × (1 + r ÷ 30)</p>
+        <p>Created by strength coach Boyd Epley, this is probably the most popular formula in the world. It adds about 3.3% to the weight for every rep you did. It works well for moderate rep ranges and tends to give slightly higher numbers as reps go up.</p>
+
+        <h3>Brzycki</h3>
+        <p class="formula-box">1RM = w × 36 ÷ (37 − r)</p>
+        <p>Developed by Matt Brzycki, this formula is very accurate for low reps (under 10) and is widely used in schools and sports teams. For a single rep it gives exactly the weight you lifted, which makes sense.</p>
+
+        <h3>Lombardi</h3>
+        <p class="formula-box">1RM = w × r<sup>0.10</sup></p>
+        <p>The Lombardi formula uses a small power instead of a straight line, so each extra rep adds a little less than the one before. It's simple and tends to sit in the middle of the pack.</p>
+
+        <h3>Lander and O'Conner</h3>
+        <p class="formula-box">Lander: 1RM = 100 × w ÷ (101.3 − 2.67123 × r)</p>
+        <p class="formula-box">O'Conner: 1RM = w × (1 + 0.025 × r)</p>
+        <p>Lander's formula gives results very close to Brzycki's. O'Conner's is the most conservative of the group. It adds only 2.5% per rep, so it usually gives the lowest estimate.</p>
+
+        <h3>Mayhew and Wathan</h3>
+        <p class="formula-box">Mayhew: 1RM = 100 × w ÷ (52.2 + 41.9 × e<sup>−0.055 × r</sup>)</p>
+        <p class="formula-box">Wathan: 1RM = 100 × w ÷ (48.8 + 53.8 × e<sup>−0.075 × r</sup>)</p>
+        <p>These two use a curved (exponential) model, which matches how real lifters tend to fatigue across a set. Mayhew's formula was originally built from bench press data and often gives one of the higher estimates.</p>
+
+        <h3>Why we use the average</h3>
+        <p>Every formula has its own small bias. Some read a little high, some a little low. Averaging all seven smooths out those differences and gives you a balanced, realistic number. For example, 100 kg for 5 reps gives estimates from 112.5 kg to 119 kg, with an average of about 115.5 kg.</p>
+      </section>
+
+      <section id="accuracy">
+        <h2>How accurate is a 1RM calculator?</h2>
+        <p>For most people, a good estimate lands within a few percent of their true max, which is accurate enough to plan training. How close you get depends on a few things:</p>
+        <ul>
+          <li><strong>Number of reps.</strong> The fewer reps, the more accurate the estimate. Sets of 2–6 are ideal. Beyond 10 reps, results can be off by 10% or more, because endurance starts to matter as much as strength.</li>
+          <li><strong>Effort.</strong> The set must be close to your limit. Stopping early leads to a low estimate.</li>
+          <li><strong>Your body and experience.</strong> Some people are naturally better at heavy singles, others at high reps. Beginners often find their real max is lower than estimated, because lifting a very heavy weight is a skill of its own.</li>
+          <li><strong>The exercise.</strong> Formulas work best on big barbell lifts like the squat, bench press and deadlift. They're less reliable for machines and small isolation exercises.</li>
+        </ul>
+        <p>Treat your result as a smart starting point, not a promise. Recalculate every few weeks with a fresh set to track your progress.</p>
+      </section>
+
+      <section id="testing">
+        <h2>How to safely test your 1RM in the gym</h2>
+        <p>If you have at least a few months of consistent training and want to know your real max, you can test it directly. Follow these steps to do it safely:</p>
+
+        <h3>Before you start</h3>
+        <ul>
+          <li>Test when you're fresh and well rested, not after a hard week of training.</li>
+          <li>Use a <strong>spotter</strong> for the bench press, and set the <strong>safety bars</strong> in a squat rack at the right height.</li>
+          <li>Know how to fail safely, such as dropping a squat onto the safety bars or letting a spotter take a bench press.</li>
+          <li>Use your calculator estimate to choose your target weights.</li>
+        </ul>
+
+        <h3>A simple warm-up plan</h3>
+        <ol class="steps">
+          <li>Empty bar or light weight for 10 easy reps.</li>
+          <li>About 50% of your estimated max for 5 reps.</li>
+          <li>About 70% for 3 reps.</li>
+          <li>About 80% for 1–2 reps.</li>
+          <li>About 90% for 1 rep.</li>
+          <li>Attempt around 100% of your estimate. If it moves well, add a small amount (2.5–5 kg) and try once more.</li>
+        </ol>
+        <p>Rest 2–5 minutes between the heavier sets. Stop as soon as your form breaks down. A lift with poor form doesn't count, and it's where most injuries happen. Most people need no more than 3 attempts above 90%.</p>
+        <p class="tip"><strong>Note:</strong> If you're a beginner, have an injury, or have a health condition, skip max testing and stick with the estimate. Talk to a qualified coach or doctor if you're unsure.</p>
+      </section>
+
+      <section id="percentages">
+        <h2>How to use 1RM percentages for training</h2>
+        <p>Once you know your 1RM, the percentage table above becomes your training guide. Different percentages build different qualities:</p>
+        <ul>
+          <li><strong>85–100% (1–5 reps):</strong> Builds maximum strength. Best for experienced lifters, used in small doses.</li>
+          <li><strong>70–85% (6–12 reps):</strong> The classic zone for building muscle and general strength.</li>
+          <li><strong>50–70% (12+ reps):</strong> Good for technique practice, warm-ups, muscular endurance and lighter recovery days.</li>
+        </ul>
+
+        <h3>An example</h3>
+        <p>Say your estimated bench press 1RM is 100 kg and your program says "4 sets of 8 at 75%". Look at the 75% row: that's 75 kg. Because the table shows about 10 reps are possible at 75%, sets of 8 will feel challenging but leave a rep or two in reserve. That's ideal for steady progress.</p>
+        <p>As you get stronger, update your 1RM every 4–8 weeks so your training weights keep up with you.</p>
+      </section>
+
+      <section id="faq" class="faq">
+        <h2>Frequently asked questions</h2>
+
+        <details>
+          <summary><h3>What does 1RM mean?</h3></summary>
+          <p>1RM stands for "one repetition maximum". It's the heaviest weight you can lift once with proper form for a given exercise.</p>
+        </details>
+
+        <details>
+          <summary><h3>How many reps should I use for the most accurate estimate?</h3></summary>
+          <p>Sets of 2 to 6 reps give the most reliable results. You can enter up to 12 reps, but accuracy drops as the reps go up.</p>
+        </details>
+
+        <details>
+          <summary><h3>Which 1RM formula is the most accurate?</h3></summary>
+          <p>No single formula is best for everyone. Epley and Brzycki are the most widely used, and both are accurate for low reps. Averaging several formulas, as this calculator does, usually gives the most balanced result.</p>
+        </details>
+
+        <details>
+          <summary><h3>Is it safe to test my one rep max?</h3></summary>
+          <p>It can be, if you have some training experience, warm up properly and use a spotter or safety bars. Beginners and anyone with injuries should use an estimate instead of testing a true max.</p>
+        </details>
+
+        <details>
+          <summary><h3>How often should I test or recalculate my 1RM?</h3></summary>
+          <p>Every 4 to 8 weeks is plenty for most people. You can recalculate your estimate at any time using a recent hard set, without the stress of a max attempt.</p>
+        </details>
+
+        <details>
+          <summary><h3>Does this calculator work for any exercise?</h3></summary>
+          <p>It works best for big barbell lifts like the squat, bench press, deadlift and overhead press. You can use it for other exercises too, but the results will be less precise.</p>
+        </details>
+
+        <details>
+          <summary><h3>What is a good one rep max for my bodyweight?</h3></summary>
+          <p>It depends on the lift, your gender and your experience. Enter your bodyweight in the strength level section above to see whether your lift is at a beginner, novice, intermediate, advanced or elite level.</p>
+        </details>
+
+        <details>
+          <summary><h3>Should I use kg or lbs?</h3></summary>
+          <p>Use whichever unit your gym's plates are marked in. The formulas work the same way in both, and the calculator remembers your choice.</p>
+        </details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">1RM <span>Calculator</span></p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="index.html">Calculator</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-note">These are estimates, not guarantees. Warm up properly, and use a spotter or safety bars when you test heavy lifts.</p>
+      <p class="footer-copy">&copy; <span id="year">2026</span> 1RM Calculator</p>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
