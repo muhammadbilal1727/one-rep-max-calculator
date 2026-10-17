@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.YOURDOMAIN.com/</loc>
+    <loc>https://www.example.com/</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
-    <loc>https://www.YOURDOMAIN.com/about.html</loc>
+    <loc>https://www.example.com/about.html</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
-    <loc>https://www.YOURDOMAIN.com/contact.html</loc>
+    <loc>https://www.example.com/contact.html</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
-    <loc>https://www.YOURDOMAIN.com/privacy-policy.html</loc>
+    <loc>https://www.example.com/privacy-policy.html</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
   <url>
-    <loc>https://www.YOURDOMAIN.com/terms.html</loc>
+    <loc>https://www.example.com/terms.html</loc>
     <lastmod>2026-10-17</lastmod>
   </url>
 </urlset>
