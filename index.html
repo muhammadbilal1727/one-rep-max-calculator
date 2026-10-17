@@ -102,13 +102,20 @@
         <span class="logo-text">1RM <span>Calculator</span></span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Main menu">
-        <a href="index.html" aria-current="page">Calculator</a>
-        <a href="about.html">About</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" aria-current="page" data-i18n="nav.calculator">Calculator</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="privacy-policy.html" data-i18n="nav.privacy">Privacy</a>
+        <a href="terms.html" data-i18n="nav.terms">Terms</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="header-actions">
+        <div class="lang-switch">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+          </svg>
+          <span class="lang-code" id="lang-code" aria-hidden="true">EN</span>
+          <select id="lang-select" aria-label="Language" data-i18n-attr="aria-label:language"></select>
+        </div>
         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
           <svg class="icon-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="4"/>
@@ -132,28 +139,28 @@
 
   <main class="container">
     <section class="hero">
-      <span class="eyebrow">Strength training tool</span>
-      <h1>One Rep Max <span class="highlight">Calculator</span></h1>
-      <p class="subtitle">Enter a set you've lifted. We'll estimate the heaviest single rep you can do using 7 proven formulas, free and instantly.</p>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Strength training tool</span>
+      <h1 data-i18n-html="hero.title">One Rep Max <span class="highlight">Calculator</span></h1>
+      <p class="subtitle" data-i18n="hero.subtitle">Enter a set you've lifted. We'll estimate the heaviest single rep you can do using 7 proven formulas, free and instantly.</p>
     </section>
 
     <div class="top-grid">
       <section class="card inputs" aria-label="Your lift">
         <div class="field">
-          <label for="lift">Lift type</label>
+          <label for="lift" data-i18n="in.lift">Lift type</label>
           <div class="select-wrap">
             <select id="lift">
-              <option value="bench">Bench Press</option>
-              <option value="squat">Squat</option>
-              <option value="deadlift">Deadlift</option>
-              <option value="ohp">Overhead Press</option>
-              <option value="other">Other</option>
+              <option value="bench" data-i18n="lift.bench">Bench Press</option>
+              <option value="squat" data-i18n="lift.squat">Squat</option>
+              <option value="deadlift" data-i18n="lift.deadlift">Deadlift</option>
+              <option value="ohp" data-i18n="lift.ohp">Overhead Press</option>
+              <option value="other" data-i18n="lift.other">Other</option>
             </select>
           </div>
         </div>
 
         <div class="field">
-          <label for="weight">Weight lifted</label>
+          <label for="weight" data-i18n="in.weight">Weight lifted</label>
           <div class="input-wrap">
             <input id="weight" type="text" inputmode="decimal" placeholder="100" autocomplete="off">
             <span class="input-suffix" id="weight-suffix">kg</span>
@@ -162,17 +169,17 @@
         </div>
 
         <div class="field">
-          <label for="reps">Reps performed <span class="hint">1–12</span></label>
+          <label for="reps"><span data-i18n="in.reps">Reps performed</span> <span class="hint">1–12</span></label>
           <div class="input-wrap">
             <input id="reps" type="text" inputmode="numeric" placeholder="5" autocomplete="off">
-            <span class="input-suffix">reps</span>
+            <span class="input-suffix" data-i18n="in.repsSuffix">reps</span>
           </div>
           <p class="error" id="reps-error" aria-live="polite"></p>
         </div>
 
         <div class="field">
-          <span class="label">Unit</span>
-          <div class="toggle" id="unit-toggle" role="radiogroup" aria-label="Unit">
+          <span class="label" data-i18n="in.unit">Unit</span>
+          <div class="toggle" id="unit-toggle" role="radiogroup" aria-label="Unit" data-i18n-attr="aria-label:in.unit">
             <span class="toggle-slider" aria-hidden="true"></span>
             <button type="button" class="toggle-btn active" data-unit="kg" role="radio" aria-checked="true">kg</button>
             <button type="button" class="toggle-btn" data-unit="lbs" role="radio" aria-checked="false">lbs</button>
@@ -181,39 +188,39 @@
       </section>
 
       <section class="card result" id="result">
-        <p class="result-label">Estimated 1RM</p>
+        <p class="result-label" data-i18n="res.label">Estimated 1RM</p>
         <p class="result-value"><span id="avg">--</span><span class="unit" id="avg-unit">kg</span></p>
         <p class="result-note" id="result-note" aria-live="polite">Enter your weight and reps to get started.</p>
         <div class="result-range" id="result-range" hidden>
-          <div><span class="range-label">Lowest</span><span class="range-value" id="range-min">--</span></div>
-          <div><span class="range-label">Highest</span><span class="range-value" id="range-max">--</span></div>
+          <div><span class="range-label" data-i18n="res.low">Lowest</span><span class="range-value" id="range-min">--</span></div>
+          <div><span class="range-label" data-i18n="res.high">Highest</span><span class="range-value" id="range-max">--</span></div>
         </div>
         <div class="result-actions">
           <button type="button" class="btn btn-primary" id="copy-btn" disabled>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>
             </svg>
-            <span id="copy-label">Copy result</span>
+            <span id="copy-label" data-i18n="btn.copy">Copy result</span>
           </button>
           <button type="button" class="btn btn-ghost" id="reset-btn">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
             </svg>
-            Reset
+            <span data-i18n="btn.reset">Reset</span>
           </button>
         </div>
       </section>
     </div>
 
-    <section class="card" aria-label="Strength level">
+    <section class="card" aria-label="Strength level" data-i18n-attr="aria-label:str.title">
       <div class="card-head">
-        <h2>Strength level</h2>
-        <p class="card-sub">Add your bodyweight to see how your lift compares with other lifters.</p>
+        <h2 data-i18n="str.title">Strength level</h2>
+        <p class="card-sub" data-i18n="str.sub">Add your bodyweight to see how your lift compares with other lifters.</p>
       </div>
 
       <div class="strength-inputs">
         <div class="field">
-          <label for="bodyweight">Your bodyweight</label>
+          <label for="bodyweight" data-i18n="str.bw">Your bodyweight</label>
           <div class="input-wrap">
             <input id="bodyweight" type="text" inputmode="decimal" placeholder="75" autocomplete="off">
             <span class="input-suffix" id="bodyweight-suffix">kg</span>
@@ -222,17 +229,17 @@
         </div>
 
         <div class="field">
-          <span class="label">Gender</span>
-          <div class="toggle" id="gender-toggle" role="radiogroup" aria-label="Gender">
+          <span class="label" data-i18n="str.gender">Gender</span>
+          <div class="toggle" id="gender-toggle" role="radiogroup" aria-label="Gender" data-i18n-attr="aria-label:str.gender">
             <span class="toggle-slider" aria-hidden="true"></span>
-            <button type="button" class="toggle-btn active" data-gender="male" role="radio" aria-checked="true">Male</button>
-            <button type="button" class="toggle-btn" data-gender="female" role="radio" aria-checked="false">Female</button>
+            <button type="button" class="toggle-btn active" data-gender="male" role="radio" aria-checked="true" data-i18n="str.male">Male</button>
+            <button type="button" class="toggle-btn" data-gender="female" role="radio" aria-checked="false" data-i18n="str.female">Female</button>
           </div>
         </div>
       </div>
 
       <div class="strength-output" aria-live="polite">
-        <p class="strength-message" id="strength-message">Enter your lift above and your bodyweight here to see your level.</p>
+        <p class="strength-message" id="strength-message" data-i18n="str.start">Enter your lift above and your bodyweight here to see your level.</p>
         <div id="strength-result" hidden>
           <div class="level-row">
             <span class="level-badge" id="level-badge">--</span>
@@ -245,11 +252,11 @@
             <span class="level-marker" id="level-marker"></span>
           </div>
           <div class="level-labels" id="level-labels">
-            <span data-short="Beg."><span class="label-full">Beginner</span></span>
-            <span data-short="Novice"><span class="label-full">Novice</span></span>
-            <span data-short="Inter."><span class="label-full">Intermediate</span></span>
-            <span data-short="Adv."><span class="label-full">Advanced</span></span>
-            <span data-short="Elite"><span class="label-full">Elite</span></span>
+            <span data-short="Beg." data-i18n-attr="data-short:levelShort.0"><span class="label-full" data-i18n="level.0">Beginner</span></span>
+            <span data-short="Novice" data-i18n-attr="data-short:levelShort.1"><span class="label-full" data-i18n="level.1">Novice</span></span>
+            <span data-short="Inter." data-i18n-attr="data-short:levelShort.2"><span class="label-full" data-i18n="level.2">Intermediate</span></span>
+            <span data-short="Adv." data-i18n-attr="data-short:levelShort.3"><span class="label-full" data-i18n="level.3">Advanced</span></span>
+            <span data-short="Elite" data-i18n-attr="data-short:levelShort.4"><span class="label-full" data-i18n="level.4">Elite</span></span>
           </div>
           <p class="level-next" id="level-next"></p>
         </div>
@@ -258,28 +265,29 @@
 
     <section class="card">
       <div class="card-head">
-        <h2>By formula</h2>
-        <p class="card-sub">Each formula estimates slightly differently. Your result above is the average.</p>
+        <h2 data-i18n="form.title">By formula</h2>
+        <p class="card-sub" data-i18n="form.sub">Each formula estimates slightly differently. Your result above is the average.</p>
       </div>
       <div class="formula-grid" id="formulas"></div>
     </section>
 
     <section class="card">
       <div class="card-head">
-        <h2>Training percentages</h2>
-        <p class="card-sub">Use these weights to plan your sets.</p>
+        <h2 data-i18n="pct.title">Training percentages</h2>
+        <p class="card-sub" data-i18n="pct.sub">Use these weights to plan your sets.</p>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>% of 1RM</th><th>Weight</th><th class="num">Approx. reps</th></tr>
+            <tr><th data-i18n="pct.col1">% of 1RM</th><th data-i18n="pct.col2">Weight</th><th class="num" data-i18n="pct.col3">Approx. reps</th></tr>
           </thead>
           <tbody id="percent-table"></tbody>
         </table>
       </div>
     </section>
 
-    <article class="card content" id="guide">
+    <article class="card content" id="guide" lang="en" dir="ltr">
+      <p class="guide-note" id="guide-note" data-i18n="guide.note" hidden>The guide below is available in English.</p>
       <nav class="toc" aria-label="On this page">
         <p class="toc-title">On this page</p>
         <ol>
@@ -451,18 +459,19 @@
     <div class="footer-inner">
       <p class="footer-brand">1RM <span>Calculator</span></p>
       <nav class="footer-links" aria-label="Footer">
-        <a href="index.html">Calculator</a>
-        <a href="about.html">About</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-i18n="nav.calculator">Calculator</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="footer.terms">Terms of Use</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </nav>
-      <p class="footer-note">These are estimates, not guarantees. Warm up properly, and use a spotter or safety bars when you test heavy lifts.</p>
+      <p class="footer-note" data-i18n="footer.note">These are estimates, not guarantees. Warm up properly, and use a spotter or safety bars when you test heavy lifts.</p>
       <p class="footer-copy">&copy; <span id="year">2026</span> 1RM Calculator</p>
     </div>
   </footer>
 
   <script src="site.js"></script>
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

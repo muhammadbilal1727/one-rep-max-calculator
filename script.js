@@ -24,17 +24,11 @@ const PERCENTAGES = [
   { pct: 50, reps: "30" },
 ];
 
-const LIFT_NAMES = {
-  bench: "Bench Press",
-  squat: "Squat",
-  deadlift: "Deadlift",
-  ohp: "Overhead Press",
-  other: "Lift",
-};
+// All visible text comes from i18n.js, so the calculator follows the chosen language.
+const t = (key, vars) => I18N.t(key, vars);
 
 // Approximate strength standards: 1RM as a multiple of bodyweight needed to reach
-// Novice, Intermediate, Advanced and Elite. Anything below Novice is Beginner.
-const LEVELS = ["Beginner", "Novice", "Intermediate", "Advanced", "Elite"];
+// Novice, Intermediate, Advanced and Elite. Anything below Novice is Beginner (levels 0–4).
 const STANDARDS = {
   male: {
     bench: [0.75, 1.0, 1.5, 2.0],
@@ -76,7 +70,7 @@ const levelBadge = $("level-badge");
 let unit = "kg";
 let gender = "male";
 let currentAverage = null; // latest valid 1RM, or null
-let currentLevel = null; // latest strength level name, or null
+let currentLevel = null; // latest strength level (0–4), or null
 let shownAverage = null; // the number currently on screen, used for the count animation
 let countFrame = null;
 let countTimer = null;
@@ -102,27 +96,27 @@ function format(n) {
   return n.toFixed(1).replace(/\.0$/, "");
 }
 
-// Returns { value } when valid, or { error } with a friendly message.
-function checkWeight(raw, label) {
+// Returns { value } when valid, or { error } with a friendly message. kind is "weight" or "bw".
+function checkWeight(raw, kind) {
   // "1,500" is a thousands separator; "62,5" is a decimal comma
   const text = raw.trim().replace(/^(\d{1,3}),(\d{3})$/, "$1$2").replace(",", ".");
   if (text === "") return { error: "" };
-  if (!/^-?(\d+\.?\d*|\.\d+)$/.test(text)) return { error: "Please use numbers only, like 80 or 62.5." };
+  if (!/^-?(\d+\.?\d*|\.\d+)$/.test(text)) return { error: t("err.number") };
   const value = parseFloat(text);
-  if (value < 0) return { error: `${label} can't be negative.` };
-  if (value === 0) return { error: `${label} must be more than 0.` };
-  if (value > 2000) return { error: "That looks too heavy. Please check the number." };
+  if (value < 0) return { error: t(`err.${kind}Neg`) };
+  if (value === 0) return { error: t(`err.${kind}Zero`) };
+  if (value > 2000) return { error: t("err.tooHeavy") };
   return { value };
 }
 
 function checkReps(raw) {
   const text = raw.trim();
   if (text === "") return { error: "" };
-  if (!/^-?\d*\.?\d+$/.test(text)) return { error: "Please use whole numbers only, like 5." };
+  if (!/^-?\d*\.?\d+$/.test(text)) return { error: t("err.repsNumber") };
   const value = Number(text);
-  if (value < 0) return { error: "Reps can't be negative." };
-  if (!Number.isInteger(value)) return { error: "Reps must be a whole number, like 5." };
-  if (value < 1 || value > 12) return { error: "Please enter between 1 and 12 reps." };
+  if (value < 0) return { error: t("err.repsNeg") };
+  if (!Number.isInteger(value)) return { error: t("err.repsWhole") };
+  if (value < 1 || value > 12) return { error: t("err.repsRange") };
   return { value };
 }
 
@@ -160,11 +154,11 @@ function animateAverage(target) {
   const duration = 500;
   const startTime = performance.now();
   function step() {
-    const t = Math.min(Math.max((performance.now() - startTime) / duration, 0), 1);
-    const eased = 1 - Math.pow(1 - t, 3);
+    const progress = Math.min(Math.max((performance.now() - startTime) / duration, 0), 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
     shownAverage = start + (target - start) * eased;
     avgEl.textContent = format(shownAverage);
-    if (t < 1) countFrame = requestAnimationFrame(step);
+    if (progress < 1) countFrame = requestAnimationFrame(step);
   }
   step();
   // Browsers pause animation frames in background tabs, so always land on the exact number.
@@ -202,7 +196,7 @@ function renderEmpty(message) {
 }
 
 function calculate() {
-  const w = checkWeight(weightInput.value, "Weight");
+  const w = checkWeight(weightInput.value, "weight");
   const r = checkReps(repsInput.value);
 
   showError(weightInput, weightError, w.error || "");
@@ -213,7 +207,7 @@ function calculate() {
     currentAverage = null;
     lastLift = null;
     const hasErrors = w.error || r.error;
-    renderEmpty(hasErrors ? "Fix the highlighted field to see your result." : "Enter your weight and reps to get started.");
+    renderEmpty(hasErrors ? t("res.fix") : t("res.empty"));
   } else {
     const weight = w.value;
     const reps = r.value;
@@ -228,7 +222,7 @@ function calculate() {
     if (key !== lastKey) {
       lastKey = key;
       animateAverage(currentAverage);
-      noteEl.textContent = `Based on ${format(weight)} ${unit} × ${reps} rep${reps === 1 ? "" : "s"}, averaged across 7 formulas`;
+      noteEl.textContent = t(reps === 1 ? "res.noteOne" : "res.note", { weight: format(weight), unit, reps });
       $("range-min").textContent = `${format(Math.min(...results))} ${unit}`;
       $("range-max").textContent = `${format(Math.max(...results))} ${unit}`;
       rangeEl.hidden = false;
@@ -252,43 +246,36 @@ function showStrengthMessage(message) {
 }
 
 function updateStrength() {
-  const bw = checkWeight(bodyweightInput.value, "Bodyweight");
+  const bw = checkWeight(bodyweightInput.value, "bw");
   showError(bodyweightInput, bodyweightError, bw.error || "");
 
   const lift = liftSelect.value;
-  if (lift === "other") {
-    return showStrengthMessage("Strength levels are available for Bench Press, Squat, Deadlift and Overhead Press.");
-  }
-  if (currentAverage === null) {
-    return showStrengthMessage("Enter your weight and reps above to see your level.");
-  }
-  if (bw.value === undefined) {
-    return showStrengthMessage(bw.error ? "Fix your bodyweight to see your level." : "Enter your bodyweight to see your level.");
-  }
+  if (lift === "other") return showStrengthMessage(t("str.other"));
+  if (currentAverage === null) return showStrengthMessage(t("str.needLift"));
+  if (bw.value === undefined) return showStrengthMessage(bw.error ? t("str.fixBw") : t("str.needBw"));
 
   const standards = STANDARDS[gender][lift];
   const ratio = currentAverage / bw.value;
-  const index = standards.filter((t) => ratio >= t).length; // 0 = Beginner ... 4 = Elite
-  const level = LEVELS[index];
+  const index = standards.filter((s) => ratio >= s).length; // 0 = Beginner ... 4 = Elite
 
   // Place the marker inside its level's fifth of the bar.
   const bounds = [0, ...standards, standards[3] * 1.25];
   const within = Math.min((ratio - bounds[index]) / (bounds[index + 1] - bounds[index]), 1);
   const position = (index + within) * 20;
 
-  if (level !== currentLevel) replay(levelBadge, "pop");
-  currentLevel = level;
-  levelBadge.textContent = level;
-  $("level-ratio").textContent = `${ratio.toFixed(2)}× bodyweight`;
+  if (index !== currentLevel) replay(levelBadge, "pop");
+  currentLevel = index;
+  levelBadge.textContent = t(`level.${index}`);
+  $("level-ratio").textContent = t("str.ratio", { ratio: ratio.toFixed(2) });
   $("level-marker").style.left = `${Math.min(Math.max(position, 2), 98)}%`;
   document.querySelectorAll("#level-labels > span").forEach((el, i) => el.classList.toggle("current", i === index));
 
   const nextEl = $("level-next");
   if (index < 4) {
     const target = standards[index] * bw.value;
-    nextEl.innerHTML = `Lift <strong>${format(target)} ${unit}</strong> to reach <strong>${LEVELS[index + 1]}</strong> (${format(target - currentAverage)} ${unit} to go).`;
+    nextEl.innerHTML = t("str.next", { target: format(target), unit, level: t(`level.${index + 1}`), left: format(target - currentAverage) });
   } else {
-    nextEl.innerHTML = `You're at the <strong>top level</strong>. Outstanding work!`;
+    nextEl.innerHTML = t("str.top");
   }
 
   strengthMessage.hidden = true;
@@ -324,10 +311,15 @@ genderToggle.querySelectorAll(".toggle-btn").forEach((btn) => {
 
 // ---------- Copy and reset ----------
 function buildSummary() {
-  const liftName = LIFT_NAMES[liftSelect.value];
   const { weight, reps } = lastLift;
-  let text = `My estimated ${liftName} 1RM: ${format(currentAverage)} ${unit} (from ${format(weight)} ${unit} × ${reps} rep${reps === 1 ? "" : "s"}).`;
-  if (currentLevel) text += ` Strength level: ${currentLevel}.`;
+  let text = t(reps === 1 ? "copy.textOne" : "copy.text", {
+    lift: t(`lift.${liftSelect.value}`),
+    avg: format(currentAverage),
+    unit,
+    weight: format(weight),
+    reps,
+  });
+  if (currentLevel !== null) text += t("copy.level", { level: t(`level.${currentLevel}`) });
   return text;
 }
 
@@ -353,10 +345,10 @@ let copyTimer = null;
 copyBtn.addEventListener("click", async () => {
   if (currentAverage === null) return;
   const ok = await copyText(buildSummary());
-  copyLabel.textContent = ok ? "Copied!" : "Couldn't copy";
+  copyLabel.textContent = ok ? t("btn.copied") : t("btn.copyFail");
   replay(copyBtn, "copied");
   clearTimeout(copyTimer);
-  copyTimer = setTimeout(() => (copyLabel.textContent = "Copy result"), 1800);
+  copyTimer = setTimeout(() => (copyLabel.textContent = t("btn.copy")), 1800);
 });
 
 $("reset-btn").addEventListener("click", () => {
@@ -373,6 +365,12 @@ weightInput.addEventListener("input", calculate);
 repsInput.addEventListener("input", calculate);
 bodyweightInput.addEventListener("input", updateStrength);
 liftSelect.addEventListener("change", updateStrength);
+
+// Redraw every message in the new language (the numbers stay, so nothing re-animates).
+document.addEventListener("i18n:change", () => {
+  lastKey = "";
+  calculate();
+});
 
 const savedUnit = loadSetting("unit");
 if (savedUnit === "kg" || savedUnit === "lbs") unit = savedUnit;

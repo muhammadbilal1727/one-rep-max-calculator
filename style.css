@@ -359,7 +359,8 @@ input {
   background: var(--surface-2);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
-  padding: 10px 70px 10px 16px;
+  padding-block: 10px;
+  padding-inline: 16px 70px;
   outline: none;
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -382,7 +383,7 @@ input.invalid {
 
 .input-suffix {
   position: absolute;
-  right: 16px;
+  inset-inline-end: 16px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--muted);
@@ -417,7 +418,7 @@ input.invalid {
   position: absolute;
   top: 4px;
   bottom: 4px;
-  left: 4px;
+  inset-inline-start: 4px;
   width: calc(50% - 4px);
   border-radius: 9px;
   background: var(--accent);
@@ -430,6 +431,11 @@ input.invalid {
   transform: translateX(100%);
 }
 
+[dir="rtl"] .toggle[data-active="lbs"] .toggle-slider,
+[dir="rtl"] .toggle[data-active="female"] .toggle-slider {
+  transform: translateX(-100%);
+}
+
 /* Lift type dropdown */
 .select-wrap {
   position: relative;
@@ -438,7 +444,7 @@ input.invalid {
 .select-wrap::after {
   content: "";
   position: absolute;
-  right: 18px;
+  inset-inline-end: 18px;
   top: 50%;
   width: 8px;
   height: 8px;
@@ -459,7 +465,8 @@ select {
   background: var(--surface-2);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
-  padding: 14px 44px 14px 16px;
+  padding-block: 14px;
+  padding-inline: 16px 44px;
   cursor: pointer;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -478,7 +485,7 @@ select:focus {
   gap: 8px;
   font-weight: 600;
   font-size: 0.95rem;
-  white-space: nowrap;
+  line-height: 1.2;
   border-radius: 999px;
   padding: 12px;
   border: 1px solid transparent;
@@ -600,7 +607,7 @@ select:focus {
 .result-value .unit {
   font-size: 0.32em;
   color: var(--result-text);
-  margin-left: 6px;
+  margin-inline-start: 6px;
   font-weight: 700;
 }
 
@@ -694,6 +701,11 @@ select:focus {
   padding: 6px 12px;
 }
 
+.level-bar,
+.level-labels {
+  direction: ltr;
+}
+
 .level-bar {
   position: relative;
   padding: 6px 0;
@@ -746,7 +758,7 @@ select:focus {
 }
 
 /* Short names on small phones so every label fits under its part of the bar */
-@media (max-width: 459px) {
+@media (max-width: 759px) {
   .level-labels .label-full {
     display: none;
   }
@@ -798,7 +810,7 @@ select:focus {
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--muted);
-  margin-left: 3px;
+  margin-inline-start: 3px;
 }
 
 .updated .formula-value,
@@ -819,7 +831,7 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: start;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 600;
@@ -836,7 +848,7 @@ td {
 }
 
 .num {
-  text-align: right;
+  text-align: end;
 }
 
 .pct-cell {
@@ -871,11 +883,61 @@ td {
   font-size: 0.78rem;
   color: var(--muted);
   font-weight: 500;
-  margin-left: 3px;
+  margin-inline-start: 3px;
 }
 
 tbody tr:first-child .weight-cell {
   color: var(--accent-strong);
+}
+
+/* ---------- Language switcher ---------- */
+.lang-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.lang-switch:focus-within {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.lang-code {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* The real dropdown sits invisibly on top, so phones show their own language picker */
+.lang-switch select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.guide-note {
+  max-width: 68ch;
+  margin: 0 auto 24px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.guide-note[hidden] {
+  display: none;
 }
 
 /* ---------- Guide content ---------- */
@@ -1193,28 +1255,6 @@ html {
 
 /* ---------- Larger screens ---------- */
 @media (min-width: 760px) {
-  .site-nav {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    gap: 2px;
-    margin-left: auto;
-    margin-right: 12px;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .site-nav a {
-    padding: 8px 12px;
-    font-size: 0.95rem;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-
   .container {
     padding-top: 48px;
     gap: 24px;
@@ -1245,5 +1285,72 @@ html {
 
   .pct-bar {
     flex-basis: 90px;
+  }
+}
+
+/* Full menu row on wide screens */
+@media (min-width: 960px) {
+  .site-nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    margin-inline-start: auto;
+    margin-inline-end: 12px;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .site-nav a {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* Phones: compact header so the logo, language, theme and menu buttons fit on one line */
+.logo-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    gap: 8px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .lang-switch {
+    height: 38px;
+    padding: 0 10px;
+  }
+
+  .theme-toggle,
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-text span,
+  .lang-switch svg {
+    display: none;
   }
 }
