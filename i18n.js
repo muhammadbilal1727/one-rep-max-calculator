@@ -5,7 +5,8 @@
   const LANGUAGES = [
     ["en", "English"], ["zh", "中文"], ["hi", "हिन्दी"], ["es", "Español"], ["fr", "Français"],
     ["ar", "العربية"], ["bn", "বাংলা"], ["pt", "Português"], ["ru", "Русский"], ["ur", "اردو"],
-    ["id", "Bahasa Indonesia"], ["de", "Deutsch"], ["ja", "日本語"], ["tr", "Türkçe"], ["ko", "한국어"],
+    ["id", "Bahasa Indonesia"], ["de", "Deutsch"], ["ja", "日本語"], ["sw", "Kiswahili"], ["mr", "मराठी"],
+    ["tr", "Türkçe"], ["ko", "한국어"],
   ];
   const RTL = ["ar", "ur"];
 
