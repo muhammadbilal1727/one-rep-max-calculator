@@ -1,4 +1,22 @@
-// Shared by every page: light/dark theme switch, mobile menu and footer year.
+// Shared by every page: Google Analytics, light/dark theme switch, mobile menu and footer year.
+
+// Google Analytics: paste your Measurement ID (it looks like "G-ABC123XYZ") between the quotes to turn it on.
+// While it is empty, no analytics code is loaded.
+const GA_MEASUREMENT_ID = "";
+
+if (/^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID)) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID);
+  const tag = document.createElement("script");
+  tag.async = true;
+  tag.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+  document.head.appendChild(tag);
+}
+
 (function () {
   const root = document.documentElement;
   const themeToggle = document.getElementById("theme-toggle");
